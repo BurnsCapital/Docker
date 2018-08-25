@@ -32,9 +32,9 @@ RUN echo " Creating Tor config file" \
             	DisableDebuggerAttachment 0 " > /etc/tor/torrc
 
 RUN echo "Installing Zcash" \
-  && git clone https://github.com/zcash/zcash.git \
-  && cd zcash \
-  && git submodule update --init --recursive \
+  && wget https://github.com/zcash/zcash/archive/v2.0.0.tar.gz \
+  && tar -zxvf v2.0.0.tar.gz \
+  && cd zcash-2.0.0 \
   && ./zcutil/fetch-params.sh \
   && ./zcutil/build.sh -j$(nproc)
 
@@ -70,7 +70,7 @@ RUN echo " Making zcash Config File (edit this!!!) " \
 
 ENV LD_LIBRARY_PATH $LD_LIBRARY_PATH:/usr/local/lib
 
-RUN cp ./zcash/src/zcashd /usr/bin
+RUN cp ./zcash-2.0.0/src/zcashd /usr/bin
 
 cmd zcashd
 
