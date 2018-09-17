@@ -6,13 +6,15 @@ services:
   - docker
 
 before_install:
-  - docker build -t bcrd/zcash:latest zcash/.
-  - docker build -t bcrd/zcash-tor:latest zcash-tor/.
-  - docker build -t bcrd/zcash-testnet:latest zcash-testnet/.
+  - docker build -t bcrd/handshake-hnsd:latest handshake-hnsd/.
+  - docker build -t bcrd/handshake-hsd:latest handshake-hsd/.
+  - docker build -t bcrd/handshake-miner:latest handshake-miner/.  
+  - docker build -t bcrd/emerald-rs:latest emerald-rs/.
 
 
 script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push bcrd/zcash:latest
-  - docker push bcrd/zcash-tor:latest
-  - docker push bcrd/zcash-testnet:latest
+  - docker push bcrd/handshake-hnsd:latest
+  - docker push bcrd/handshake-hsd:latest
+  - docker push bcrd/handshake-miner:latest
+  - docker push bcrd/emerald-rs:latest

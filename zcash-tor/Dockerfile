@@ -22,13 +22,12 @@ RUN echo " Creating Tor config file" \
   && rm /etc/tor/torrc \
   && echo " 	ClientOnly 1    \n \
             	SOCKSPort 9050    \n \
-           	SOCKSPolicy accept 127.0.0.1/8  \n \
+           	SOCKSPolicy accept 127.0.0.1/0  \n \
             	Log notice file /var/log/tor/notices.log \n \
             	ControlPort 9051  \n \
             	HiddenServiceStatistics 0 \n \
             	ORPort 9001  \n \
             	LongLivedPorts 21,22,706,1863,5050,5190,5222,5223,6523,6667,6697,8300,8233 \n \
-            	ExitPolicy reject : \n \
             	DisableDebuggerAttachment 0 " > /etc/tor/torrc
 
 RUN echo "Installing Zcash" \
